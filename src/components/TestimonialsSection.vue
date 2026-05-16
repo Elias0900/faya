@@ -19,14 +19,11 @@
             :style="t.photo ? { backgroundImage: `url(${t.photo})` } : {}"
           >
             <span v-if="!t.photo" class="t-emoji">{{ t.avatar }}</span>
-            <div class="t-thumb-overlay"></div>
+            <div class="t-thumb-fade"></div>
           </div>
 
-          <!-- Panneau info (slide up au hover) -->
+          <!-- Panneau info — les éléments toujours visibles sont en haut -->
           <div class="t-infos">
-            <p class="t-quote">"{{ t.text }}"</p>
-            <span class="t-verified">Témoignage vérifié <span class="check-icon">✓</span></span>
-            <div class="t-sep"></div>
             <div class="t-stars">
               <span v-for="s in 5" :key="s">★</span>
             </div>
@@ -34,6 +31,11 @@
               <span class="author-name">{{ t.name }}</span>
               <span class="author-role">{{ t.role }}</span>
             </div>
+
+            <!-- Révélé au hover -->
+            <div class="t-sep"></div>
+            <p class="t-quote">"{{ t.text }}"</p>
+            <span class="t-verified">Témoignage vérifié <span class="check-icon">✓</span></span>
           </div>
         </article>
       </div>
@@ -134,6 +136,7 @@ const testimonials = [
   overflow: hidden;
   border: 1px solid var(--border);
   cursor: default;
+  /* intègre la transition reveal + les effets hover */
   transition:
     opacity 0.6s ease,
     transform 0.6s ease,
@@ -142,29 +145,30 @@ const testimonials = [
 }
 .t-card:hover {
   border-color: rgba(201,162,39,0.4);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 0 28px rgba(201,162,39,0.1);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 28px rgba(201,162,39,0.1);
 }
 
 /* ── Thumb ────────────────────────────────────────────── */
 .t-thumb {
   height: 215px;
-  background:
-    linear-gradient(160deg, #1c1200 0%, #0d0d0d 45%, #1a0a00 100%)
-    no-repeat center;
+  background: linear-gradient(160deg, #1c1200 0%, #0d0d0d 45%, #1a0a00 100%) no-repeat center;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
 }
-/* Pour ajouter une photo : t.photo = '/testimonials/thomas.jpg' */
-.t-thumb-overlay {
+/* Pour ajouter une photo : mettez t.photo = '/testimonials/thomas.jpg' */
+.t-thumb-fade {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, var(--bg-card) 100%);
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  background: linear-gradient(transparent, var(--bg-card));
+  pointer-events: none;
 }
 .t-emoji {
-  font-size: 72px;
+  font-size: 68px;
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
@@ -172,12 +176,11 @@ const testimonials = [
 
 /* ── Info panel ───────────────────────────────────────── */
 .t-infos {
-  height: 360px;
   background: var(--bg-card);
-  padding: 20px 26px 26px;
+  padding: 20px 24px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  /* pas de justify-content flex-end — le contenu visible est en haut */
   transform: translateY(0);
   transition: transform 0.45s 0.05s cubic-bezier(.17,.67,.5,1.03);
 }
@@ -185,46 +188,7 @@ const testimonials = [
   transform: translateY(-215px);
 }
 
-/* Content hidden by default, revealed on hover */
-.t-quote {
-  color: var(--gray-light);
-  font-size: 14px;
-  line-height: 1.75;
-  font-style: italic;
-  margin: 0 0 14px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s 0.18s ease, transform 0.3s 0.18s ease;
-}
-.t-verified {
-  font-size: 12px;
-  color: var(--gray-mid);
-  letter-spacing: 0.3px;
-  margin-bottom: 16px;
-  opacity: 0;
-  transition: opacity 0.3s 0.23s ease;
-}
-.check-icon {
-  color: var(--gold);
-  font-weight: 700;
-}
-.t-card:hover .t-quote {
-  opacity: 1;
-  transform: translateY(0);
-}
-.t-card:hover .t-verified {
-  opacity: 1;
-}
-
-/* Separator — always visible */
-.t-sep {
-  height: 1px;
-  background: linear-gradient(to right, rgba(201,162,39,0.4), transparent);
-  margin-bottom: 16px;
-  flex-shrink: 0;
-}
-
-/* Stars — always visible */
+/* Toujours visibles (en haut du panneau) */
 .t-stars {
   color: var(--gold);
   font-size: 14px;
@@ -232,12 +196,10 @@ const testimonials = [
   margin-bottom: 10px;
   flex-shrink: 0;
 }
-
-/* Author — always visible */
 .t-author {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   flex-shrink: 0;
 }
 .author-name {
@@ -251,6 +213,40 @@ const testimonials = [
   letter-spacing: 0.3px;
 }
 
+/* Révélés au hover (en dessous) */
+.t-sep {
+  height: 1px;
+  background: linear-gradient(to right, rgba(201,162,39,0.5), transparent);
+  margin: 18px 0 16px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.3s 0.15s ease;
+}
+.t-quote {
+  color: var(--gray-light);
+  font-size: 14px;
+  line-height: 1.75;
+  font-style: italic;
+  margin: 0 0 12px;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s 0.2s ease, transform 0.3s 0.2s ease;
+}
+.t-verified {
+  font-size: 12px;
+  color: var(--gray-mid);
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.3s 0.28s ease;
+}
+.check-icon { color: var(--gold); font-weight: 700; }
+
+.t-card:hover .t-sep     { opacity: 1; }
+.t-card:hover .t-quote   { opacity: 1; transform: translateY(0); }
+.t-card:hover .t-verified { opacity: 1; }
+
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 960px) {
   .testimonials-section { padding: 72px 0; }
@@ -261,23 +257,10 @@ const testimonials = [
   .testimonials-section { padding: 56px 0; }
   .testimonials-track { grid-template-columns: 1fr; gap: 16px; }
 
-  /* Mobile : tout visible sans animation hover */
-  .t-card {
-    height: auto;
-    overflow: visible;
-  }
-  .t-thumb { height: 160px; border-radius: 12px 12px 0 0; }
-  .t-infos {
-    height: auto;
-    transform: none !important;
-    transition: none;
-    border-radius: 0 0 12px 12px;
-    padding: 18px 20px 22px;
-  }
-  .t-quote,
-  .t-verified {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  /* Mobile : affichage statique complet, pas d'animation hover */
+  .t-card { height: auto; }
+  .t-thumb { height: 160px; }
+  .t-infos { transform: none !important; transition: none; }
+  .t-sep, .t-quote, .t-verified { opacity: 1 !important; transform: none !important; }
 }
 </style>

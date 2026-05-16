@@ -3,7 +3,10 @@
     <div class="container nav-inner">
       <a href="#hero" class="logo">
         <img :src="logoSrc" alt="Logo" class="logo-img" @error="onLogoError" />
-        <span class="logo-text logo-fallback">ELITE<span class="gold">COACH</span></span>
+        <div class="logo-text-group">
+          <span class="logo-text logo-fallback">ELITE<span class="gold">COACH</span></span>
+          <span class="logo-tagline">MAKE IT HAPPEN</span>
+        </div>
       </a>
       <ul class="nav-links" :class="{ open: menuOpen }">
         <li><a href="#services" @click="menuOpen = false">Programmes</a></li>
@@ -80,7 +83,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 /* Image logo */
 .logo-img {
-  height: 48px;
+  height: 75px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -91,9 +94,27 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   filter: drop-shadow(0 0 10px rgba(201,162,39,0.7)) drop-shadow(0 0 24px rgba(201,162,39,0.35));
 }
 
+/* Groupe texte à droite du logo image */
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 /* Fallback texte — visible uniquement si logo absent */
 .logo-fallback {
   display: none;
+}
+
+/* Tagline toujours visible */
+.logo-tagline {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.85;
+  line-height: 1;
 }
 
 .gold { color: var(--gold); }
