@@ -19,10 +19,6 @@
 
     <div class="container hero-inner">
       <div class="hero-content">
-        <div class="hero-badge reveal">
-          <span class="badge-dot"></span>
-          Coach Certifié · Bretagne
-        </div>
         <h1 class="hero-title reveal">
           Élève ton jeu.<br />
           <span class="gold-gradient">Dépasse tes limites.</span>
@@ -79,12 +75,18 @@
           <!-- Anneau décoratif -->
           <div class="deco-ring"></div>
         </div>
+
+        <!-- Badge coach certifié sous la photo -->
+        <div class="cert-badge reveal">
+          <span class="cert-dot"></span>
+          <span class="cert-text">Coach Certifié · Bretagne</span>
+        </div>
       </div>
     </div>
 
     <div class="scroll-hint">
       <div class="scroll-line"></div>
-      <span>Scroll</span>
+      <span>MAKE IT HAPPEN</span>
     </div>
   </section>
 </template>
@@ -122,25 +124,25 @@ function onImgError(e: Event) {
 }
 .orb-1 {
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgb(15 69 65 / 0.51) 0%, transparent 85%);
+  background: radial-gradient(circle, rgba(130,85,6,0.38) 0%, transparent 85%);
   top: -260px; right: -180px;
   animation: orb-drift-1 12s ease-in-out infinite alternate;
 }
 .orb-2 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgb(92 55 3 / 0.51) 0%, transparent 85%);
+  background: radial-gradient(circle, rgba(90,58,4,0.32) 0%, transparent 85%);
   bottom: -160px; left: -140px;
   animation: orb-drift-2 15s ease-in-out infinite alternate;
 }
 .orb-3 {
   width: 380px; height: 380px;
-  background: radial-gradient(circle, rgb(211 134 14 / 0.44) 0%, transparent 85%);
+  background: radial-gradient(circle, rgba(180,115,8,0.28) 0%, transparent 85%);
   top: 30%; left: 20%;
   animation: orb-drift-3 18s ease-in-out infinite alternate;
 }
 .orb-4 {
   width: 280px; height: 280px;
-  background: radial-gradient(circle, rgb(106 108 166 / 0.47) 0%, transparent 85%);
+  background: radial-gradient(circle, rgba(70,55,15,0.22) 0%, transparent 85%);
   bottom: 10%; right: 15%;
   animation: orb-drift-4 11s ease-in-out infinite alternate;
 }
@@ -203,23 +205,71 @@ function onImgError(e: Event) {
   padding-bottom: 60px;
 }
 
-/* ── Texte gauche ─────────────────────────────────────── */
-.hero-badge {
+/* ── Badge "Coach Certifié" sous la photo ─────────────── */
+/* Modifie uniquement ce bloc pour personnaliser ce badge  */
+
+@property --badge-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cert-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gold-dim);
-  border: 1px solid rgba(201,162,39,0.3);
-  color: var(--gold-light);
   font-size: 13px; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
-  padding: 8px 16px; border-radius: 100px;
-  margin-bottom: 24px;
+  padding: 9px 18px; border-radius: 7px;
+  position: relative;
+  /* Bordure animée : lumière qui tourne dans un seul sens */
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+    conic-gradient(
+      from var(--badge-angle),
+      transparent              82%,
+      rgba(201,162,39,0.45)    90%,
+      rgba(255,255,255,0.9)    93%,
+      rgba(201,162,39,0.45)    96%,
+      transparent              100%
+    ) border-box;
+  animation: badge-border-rotate 3.5s linear infinite;
 }
-.badge-dot {
+
+@keyframes badge-border-rotate {
+  to { --badge-angle: 360deg; }
+}
+
+.cert-dot, .cert-text {
+  position: relative;
+  z-index: 1;
+}
+.cert-dot {
   width: 7px; height: 7px;
   background: var(--gold); border-radius: 50%;
+  flex-shrink: 0;
   animation: pulse-dot 2s ease-in-out infinite;
+}
+/* Texte avec effet shine doré — discret et fluide */
+.cert-text {
+  background: linear-gradient(
+    to right,
+    var(--gold)              0%,
+    var(--gold)              30%,
+    rgba(255,255,255,0.92)   50%,
+    var(--gold)              70%,
+    var(--gold)              100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cert-shine 5s linear infinite;
+}
+@keyframes cert-shine {
+  from { background-position: 200% center; }
+  to   { background-position: -50% center; }
 }
 @keyframes pulse-dot {
   0%,100% { opacity:1; transform:scale(1); }
@@ -232,7 +282,7 @@ function onImgError(e: Event) {
   color: var(--white);
 }
 .gold-gradient {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, #ff9500 100%);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -270,8 +320,9 @@ function onImgError(e: Event) {
 /* ── Photo droite ─────────────────────────────────────── */
 .hero-visual {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 28px;
   animation: photo-entry 1s cubic-bezier(0.16,1,0.3,1) both;
   animation-delay: 0.3s;
 }
@@ -475,7 +526,8 @@ function onImgError(e: Event) {
   .hero-sub { margin: 0 auto 36px; max-width: 100%; }
   .hero-actions { justify-content: center; flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-ghost { justify-content: center; }
-  .hero-visual { display: none; }
-  .hero-badge { margin: 0 auto 20px; }
+  .hero-visual .photo-frame { display: none; }
+  .hero-visual { order: -1; gap: 0; }
+  .hero-visual .cert-badge { margin: 0 auto 28px; }
 }
 </style>

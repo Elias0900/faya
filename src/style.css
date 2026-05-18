@@ -1,18 +1,25 @@
 :root {
-  --bg-primary: #080808;
-  --bg-secondary: #111111;
-  --bg-card: #161616;
-  --gold: #8e27c9;
-  --gold-light: #f0c840;
-  --gold-dim: rgba(201, 162, 39, 0.15);
-  --white: #ffffff;
-  --gray-light: #a0a0a0;
-  --gray-mid: #555555;
-  --border: rgba(255, 255, 255, 0.06);
-  --font: 'Inter', system-ui, sans-serif;
-  --radius: 12px;
-  --radius-lg: 20px;
-  --shadow-gold: 0 0 40px rgba(201, 162, 39, 0.2);
+  /* ── Backgrounds ─ warm near-black ─────────────────────── */
+  --bg-primary:   #0d0c0a;
+  --bg-secondary: #080807;
+  --bg-card:      #131210;
+
+  /* ── Gold ─ single amber family, pas de saut brutal ──────── */
+  --gold:         #C4A031;                    /* amber-gold riche */
+  --gold-light:   #D4B455;                    /* +15% luminosité, même teinte */
+  --gold-dim:     rgba(196, 160, 49, 0.12);   /* ultra-subtil pour fonds */
+
+  /* ── Texte ───────────────────────────────────────────────── */
+  --white:        #F4F0E8;                    /* off-white chaud, lisible */
+  --gray-light:   #8A8480;                    /* gris chaud clair */
+  --gray-mid:     #4E4A45;                    /* gris chaud moyen */
+
+  /* ── Utilitaires ─────────────────────────────────────────── */
+  --border:       rgba(255, 255, 255, 0.07);
+  --font:         'Inter', system-ui, sans-serif;
+  --radius:       12px;
+  --radius-lg:    20px;
+  --shadow-gold:  0 0 40px rgba(196, 160, 49, 0.18);
 }
 
 *, *::before, *::after {
@@ -40,7 +47,7 @@ body {
 
 ::selection {
   background: var(--gold);
-  color: #000;
+  color: #0d0c0a;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -80,4 +87,3 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
-
