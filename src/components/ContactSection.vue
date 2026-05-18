@@ -93,7 +93,7 @@ function handleSubmit() {
   margin-bottom: 16px;
 }
 .contact-title {
-  font-size: clamp(28px, 3.5vw, 44px);
+  font-size: clamp(22px, 2.8vw, 36px);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -1px;
@@ -107,7 +107,7 @@ function handleSubmit() {
 }
 .contact-desc {
   color: var(--gray-light);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.7;
   margin-bottom: 40px;
 }
@@ -192,7 +192,7 @@ select option {
   border: none;
   border-radius: 10px;
   padding: 16px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   font-family: var(--font);
   cursor: pointer;

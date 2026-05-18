@@ -74,7 +74,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   gap: 10px;
   text-decoration: none;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
   color: var(--white);
   transition: opacity 0.3s;
@@ -127,7 +127,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 .nav-links a {
   text-decoration: none;
   color: var(--gray-light);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.5px;
   transition: color 0.3s;
@@ -194,6 +194,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     z-index: 99;
   }
   .nav-links.open { right: 0; }
-  .nav-links a { font-size: 18px; }
+  .nav-links a { font-size: 16px; }
 }
 </style>

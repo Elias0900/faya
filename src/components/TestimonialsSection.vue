@@ -109,7 +109,7 @@ const testimonials = [
   margin-bottom: 16px;
 }
 .section-title {
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -1px;

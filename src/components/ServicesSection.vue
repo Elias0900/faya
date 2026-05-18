@@ -87,8 +87,8 @@ const services = [
   margin-bottom: 16px;
 }
 .section-title {
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 900;
+  font-size: clamp(24px, 3.2vw, 40px);
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -1px;
   margin-bottom: 16px;
@@ -101,7 +101,7 @@ const services = [
 }
 .section-sub {
   color: var(--gray-light);
-  font-size: 16px;
+  font-size: 14px;
   max-width: 500px;
   margin: 0 auto;
   line-height: 1.7;
@@ -147,11 +147,11 @@ const services = [
   white-space: nowrap;
 }
 .service-icon {
-  font-size: 36px;
+  font-size: 28px;
   margin-bottom: 20px;
 }
 .service-name {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   margin-bottom: 12px;
   color: var(--white);
@@ -188,8 +188,8 @@ const services = [
   gap: 6px;
 }
 .price-amount {
-  font-size: 40px;
-  font-weight: 900;
+  font-size: 32px;
+  font-weight: 800;
   color: var(--white);
 }
 .price-period {

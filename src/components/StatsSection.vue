@@ -116,7 +116,7 @@ onMounted(() => {
   margin-bottom: 8px;
 }
 .count {
-  font-size: 52px;
+  font-size: 40px;
   font-weight: 900;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   -webkit-background-clip: text;
@@ -125,7 +125,7 @@ onMounted(() => {
   line-height: 1;
 }
 .stat-suffix {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--gold);
 }

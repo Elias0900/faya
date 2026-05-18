@@ -243,9 +243,9 @@ function onImgError(e: Event) {
 
 /* ── Contenu hero ─────────────────────────────────────── */
 .hero-title {
-  font-size: clamp(42px,6vw,72px);
-  font-weight: 900; line-height: 1.05;
-  letter-spacing: -2px; margin-bottom: 24px;
+  font-size: clamp(32px,4.5vw,56px);
+  font-weight: 800; line-height: 1.08;
+  letter-spacing: -1.5px; margin-bottom: 22px;
   color: var(--white);
 }
 .gold-gradient {
@@ -255,16 +255,16 @@ function onImgError(e: Event) {
   background-clip: text;
 }
 .hero-sub {
-  font-size: 17px; color: var(--gray-light);
-  line-height: 1.7; margin-bottom: 40px; max-width: 480px;
+  font-size: 15px; color: var(--gray-light);
+  line-height: 1.7; margin-bottom: 36px; max-width: 460px;
 }
 .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--gold); color: #080706;
-  text-decoration: none; font-weight: 700; font-size: 15px;
-  padding: 14px 28px; border-radius: 10px;
+  text-decoration: none; font-weight: 600; font-size: 14px;
+  padding: 13px 26px; border-radius: 10px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 24px rgba(192,154,48,0.35);
 }
@@ -276,8 +276,8 @@ function onImgError(e: Event) {
 .btn-ghost {
   display: inline-flex; align-items: center;
   color: var(--gray-light); text-decoration: none;
-  font-weight: 500; font-size: 15px;
-  padding: 14px 20px; border-radius: 10px;
+  font-weight: 500; font-size: 14px;
+  padding: 13px 20px; border-radius: 10px;
   border: 1px solid var(--border); transition: all 0.3s;
 }
 .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
