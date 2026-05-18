@@ -1,25 +1,25 @@
 :root {
-  /* ── Backgrounds ─ warm near-black ─────────────────────── */
-  --bg-primary:   #0d0c0a;
-  --bg-secondary: #080807;
-  --bg-card:      #131210;
+  /* ── Backgrounds ─ noir absolu, souffle chaud à peine perceptible ── */
+  --bg-primary:   #080706;
+  --bg-secondary: #050403;
+  --bg-card:      #0F0D0A;
 
-  /* ── Gold ─ single amber family, pas de saut brutal ──────── */
-  --gold:         #C4A031;                    /* amber-gold riche */
-  --gold-light:   #D4B455;                    /* +15% luminosité, même teinte */
-  --gold-dim:     rgba(196, 160, 49, 0.12);   /* ultra-subtil pour fonds */
+  /* ── Gold 18 carats ─ une seule teinte, deux niveaux proches ──────── */
+  --gold:         #C09A30;                    /* or ambré riche, ni trop jaune ni trop orange */
+  --gold-light:   #D4AE50;                    /* +1 step, même famille — saut minimal */
+  --gold-dim:     rgba(192, 154, 48, 0.1);    /* fond subtil */
 
-  /* ── Texte ───────────────────────────────────────────────── */
-  --white:        #F4F0E8;                    /* off-white chaud, lisible */
-  --gray-light:   #8A8480;                    /* gris chaud clair */
-  --gray-mid:     #4E4A45;                    /* gris chaud moyen */
+  /* ── Texte ───────────────────────────────────────────────────────── */
+  --white:        #F5F2EB;                    /* blanc chaud — papier premium */
+  --gray-light:   #857D72;                    /* gris chaud clair */
+  --gray-mid:     #403B35;                    /* gris chaud moyen */
 
-  /* ── Utilitaires ─────────────────────────────────────────── */
+  /* ── Utilitaires ─────────────────────────────────────────────────── */
   --border:       rgba(255, 255, 255, 0.07);
   --font:         'Inter', system-ui, sans-serif;
   --radius:       12px;
   --radius-lg:    20px;
-  --shadow-gold:  0 0 40px rgba(196, 160, 49, 0.18);
+  --shadow-gold:  0 0 40px rgba(192, 154, 48, 0.18);
 }
 
 *, *::before, *::after {
@@ -47,7 +47,7 @@ body {
 
 ::selection {
   background: var(--gold);
-  color: #0d0c0a;
+  color: #080706;
 }
 
 ::-webkit-scrollbar { width: 6px; }

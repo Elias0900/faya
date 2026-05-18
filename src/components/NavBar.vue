@@ -91,7 +91,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 .logo:hover .logo-img {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 10px rgba(201,162,39,0.7)) drop-shadow(0 0 24px rgba(201,162,39,0.35));
+  filter: drop-shadow(0 0 10px rgba(192,154,48,0.7)) drop-shadow(0 0 24px rgba(192,154,48,0.35));
 }
 
 /* Groupe texte à droite du logo image */

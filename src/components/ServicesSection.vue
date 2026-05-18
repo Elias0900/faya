@@ -123,13 +123,13 @@ const services = [
 }
 .service-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(201,162,39,0.3);
+  border-color: rgba(192,154,48,0.3);
   box-shadow: var(--shadow-gold);
 }
 .service-card.featured {
-  background: linear-gradient(145deg, #171300, #0d0c0a);
+  background: linear-gradient(145deg, #140f02, #080706);
   border-color: var(--gold);
-  box-shadow: 0 0 50px rgba(201,162,39,0.18);
+  box-shadow: 0 0 50px rgba(192,154,48,0.18);
 }
 .featured-badge {
   position: absolute;

@@ -125,7 +125,7 @@ function handleSubmit() {
   width: 40px;
   height: 40px;
   background: var(--gold-dim);
-  border: 1px solid rgba(201,162,39,0.2);
+  border: 1px solid rgba(192,154,48,0.2);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -197,12 +197,12 @@ select option {
   font-family: var(--font);
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 20px rgba(201,162,39,0.3);
+  box-shadow: 0 4px 20px rgba(192,154,48,0.3);
 }
 .submit-btn:hover:not(.sent) {
   background: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(201,162,39,0.45);
+  box-shadow: 0 8px 30px rgba(192,154,48,0.45);
 }
 .submit-btn.sent {
   background: #1a3a1a;

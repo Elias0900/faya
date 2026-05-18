@@ -69,7 +69,7 @@ onMounted(() => {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(201,162,39,0.04) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(192,154,48,0.04) 50%, transparent 100%);
   pointer-events: none;
 }
 .stats-grid {

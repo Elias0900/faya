@@ -144,8 +144,8 @@ const testimonials = [
     box-shadow 0.35s ease;
 }
 .t-card:hover {
-  border-color: rgba(201,162,39,0.4);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 28px rgba(201,162,39,0.1);
+  border-color: rgba(192,154,48,0.4);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 28px rgba(192,154,48,0.1);
 }
 
 /* ── Thumb ────────────────────────────────────────────── */
@@ -216,7 +216,7 @@ const testimonials = [
 /* Révélés au hover (en dessous) */
 .t-sep {
   height: 1px;
-  background: linear-gradient(to right, rgba(201,162,39,0.5), transparent);
+  background: linear-gradient(to right, rgba(192,154,48,0.5), transparent);
   margin: 18px 0 16px;
   flex-shrink: 0;
   opacity: 0;
