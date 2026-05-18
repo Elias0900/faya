@@ -42,9 +42,10 @@
             <label>Message</label>
             <textarea v-model="form.message" rows="4" placeholder="Tes objectifs, disponibilités..."></textarea>
           </div>
-          <button type="submit" class="submit-btn" :class="{ sent }">
-            <span v-if="!sent">Envoyer ma demande →</span>
-            <span v-else>✓ Message envoyé !</span>
+          <button type="submit" class="submit-btn" :class="{ sent }" :disabled="sending || sent">
+            <span v-if="sending">Envoi en cours…</span>
+            <span v-else-if="sent">✓ Message envoyé !</span>
+            <span v-else>Envoyer ma demande →</span>
           </button>
         </form>
       </div>
@@ -56,6 +57,7 @@
 import { ref, reactive } from 'vue'
 
 const sent = ref(false)
+const sending = ref(false)
 const form = reactive({ name: '', email: '', level: '', message: '' })
 
 const perks = [
@@ -64,12 +66,28 @@ const perks = [
   { icon: '📍', text: 'Bretagne · En ligne disponible' },
 ]
 
-function handleSubmit() {
-  sent.value = true
-  setTimeout(() => {
-    sent.value = false
-    Object.assign(form, { name: '', email: '', level: '', message: '' })
-  }, 3000)
+async function handleSubmit() {
+  sending.value = true
+  try {
+    await fetch('https://formsubmit.co/ajax/tournoi1v1tregueux@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        Prénom: form.name,
+        Email: form.email,
+        Niveau: form.level,
+        Message: form.message,
+        _subject: `Nouvelle demande de coaching — ${form.name}`,
+      }),
+    })
+  } finally {
+    sending.value = false
+    sent.value = true
+    setTimeout(() => {
+      sent.value = false
+      Object.assign(form, { name: '', email: '', level: '', message: '' })
+    }, 4000)
+  }
 }
 </script>
 
