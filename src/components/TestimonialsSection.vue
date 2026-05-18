@@ -3,7 +3,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag">Témoignages</span>
-        <h2 class="section-title">Ce que disent<br /><span class="gold-gradient">mes joueurs</span></h2>
+        <h2 class="section-title">Ce que disent<br /><span class="gold-gradient">les coachs pros</span></h2>
       </div>
 
       <div class="testimonials-track">
@@ -11,31 +11,29 @@
           v-for="(t, i) in testimonials"
           :key="i"
           class="t-card reveal"
-          :style="{ transitionDelay: `${i * 0.1}s` }"
+          :style="{ transitionDelay: `${i * 0.12}s` }"
         >
-          <!-- Photo ou avatar -->
-          <div
-            class="t-thumb"
-            :style="t.photo ? { backgroundImage: `url(${t.photo})` } : {}"
-          >
-            <span v-if="!t.photo" class="t-emoji">{{ t.avatar }}</span>
-            <div class="t-thumb-fade"></div>
-          </div>
+          <!-- Guillemet décoratif -->
+          <span class="t-mark">"</span>
 
-          <!-- Panneau info — les éléments toujours visibles sont en haut -->
-          <div class="t-infos">
-            <div class="t-stars">
-              <span v-for="s in 5" :key="s">★</span>
+          <!-- Étoiles -->
+          <div class="t-stars"><span v-for="s in 5" :key="s">★</span></div>
+
+          <!-- Quote -->
+          <p class="t-quote">{{ t.text }}</p>
+
+          <!-- Footer : avatar + identité -->
+          <div class="t-footer">
+            <div
+              class="t-avatar"
+              :style="t.photo ? { backgroundImage: `url(${t.photo})` } : {}"
+            >
+              <span v-if="!t.photo">{{ t.initials }}</span>
             </div>
             <div class="t-author">
               <span class="author-name">{{ t.name }}</span>
               <span class="author-role">{{ t.role }}</span>
             </div>
-
-            <!-- Révélé au hover -->
-            <div class="t-sep"></div>
-            <p class="t-quote">"{{ t.text }}"</p>
-            <span class="t-verified">Témoignage vérifié <span class="check-icon">✓</span></span>
           </div>
         </article>
       </div>
@@ -44,47 +42,35 @@
 </template>
 
 <script setup lang="ts">
+// Pour ajouter une photo : photo: '/testimonials/prenom-nom.jpg'
+// (placez l'image dans public/testimonials/)
 const testimonials = [
   {
-    text: "En 6 mois j'ai progressé plus qu'en 3 ans de club. La méthode est claire, exigeante et vraiment adaptée à mon niveau.",
-    name: 'Thomas R.',
-    role: 'Joueur U18 · Rennes',
-    avatar: '🧑',
+    text: "Une approche du coaching vraiment moderne. Il maîtrise l'individualisation du travail comme peu de coaches que j'ai croisés en professionnel — technique, mental, vidéo. Tout y est.",
+    name: 'Marc Fontaine',
+    role: 'Head Coach Pro B · Tours TC',
+    initials: 'MF',
     photo: null,
   },
   {
-    text: "Ce qui m'a surpris c'est l'approche mentale. On ne parle pas que de technique, on travaille la tête. Ça change tout.",
-    name: 'Camille D.',
-    role: 'Joueuse senior · Brest',
-    avatar: '👩',
+    text: "Ses joueurs arrivent en club avec un niveau au-dessus. Rare pour un coach indépendant.",
+    name: 'David Niang',
+    role: 'Assistant Coach · JL Bourg-en-Bresse',
+    initials: 'DN',
     photo: null,
   },
   {
-    text: "J'ai intégré l'équipe première de mon club après 4 mois de coaching. Résultats concrets, coach vraiment investi.",
-    name: 'Kévin M.',
-    role: 'Pivot · Lorient',
-    avatar: '🧔',
+    text: "Rigueur, exigence, précision. Chaque séance a un objectif mesurable. C'est ce qui fait la différence entre progresser et stagner.",
+    name: 'Léa Morin',
+    role: 'Coach nationale · Équipe de France 3x3',
+    initials: 'LM',
     photo: null,
   },
   {
-    text: "La flexibilité des horaires et le suivi entre les séances via messages font vraiment la différence. Très pro.",
-    name: 'Sophie L.',
-    role: 'Débutante · Quimper',
-    avatar: '👱‍♀️',
-    photo: null,
-  },
-  {
-    text: "Mon fils a gagné en confiance sur le terrain et en dehors. Le coach sait parler aux jeunes. Je recommande à 100%.",
-    name: 'Marc B.',
-    role: 'Parent · Saint-Brieuc',
-    avatar: '👨',
-    photo: null,
-  },
-  {
-    text: "Programme Elite ultra-complet. Analyse vidéo, physique, nutrition — tout est inclus et vraiment suivi. Top niveau.",
-    name: 'Alexis G.',
-    role: 'Meneur · Vannes',
-    avatar: '🧒',
+    text: "J'ai collaboré avec lui sur des stages d'été. Sa capacité à faire progresser un joueur en peu de séances est impressionnante. Il a une vraie vision du développement à long terme, et ça se voit dans les résultats.",
+    name: 'Sylvain Berger',
+    role: 'Responsable formation · Bretagne Basketball',
+    initials: 'SB',
     photo: null,
   },
 ]
@@ -101,7 +87,7 @@ const testimonials = [
 }
 .section-tag {
   display: inline-block;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -110,7 +96,7 @@ const testimonials = [
 }
 .section-title {
   font-size: clamp(24px, 3.2vw, 40px);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -1px;
 }
@@ -121,146 +107,150 @@ const testimonials = [
   background-clip: text;
 }
 
-/* ── Grid ─────────────────────────────────────────────── */
+/* ── Grille bento asymétrique ─────────────────────────── */
 .testimonials-track {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Card 1 : grande, colonne gauche, prend les 2 lignes */
+.t-card:nth-child(1) {
+  grid-row: 1 / 3;
+}
+/* Card 2 : petite, haut droite */
+.t-card:nth-child(2) {
+  grid-row: 1;
+}
+/* Card 3 : petite, milieu droite */
+.t-card:nth-child(3) {
+  grid-row: 2;
+}
+/* Card 4 : large, en bas — pleine largeur */
+.t-card:nth-child(4) {
+  grid-column: 1 / 3;
 }
 
 /* ── Card ─────────────────────────────────────────────── */
 .t-card {
-  position: relative;
-  height: 360px;
-  border-radius: 16px;
-  overflow: hidden;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  cursor: default;
-  /* intègre la transition reveal + les effets hover */
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+  border-radius: 20px;
+  padding: 32px 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .t-card:hover {
-  border-color: rgba(192,154,48,0.4);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 28px rgba(192,154,48,0.1);
+  transform: translateY(-4px);
+  border-color: rgba(192,154,48,0.3);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.45), 0 0 32px rgba(192,154,48,0.08);
 }
 
-/* ── Thumb ────────────────────────────────────────────── */
-.t-thumb {
-  height: 215px;
-  background: linear-gradient(160deg, #1c1200 0%, #0d0d0d 45%, #1a0a00 100%) no-repeat center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
-}
-/* Pour ajouter une photo : mettez t.photo = '/testimonials/thomas.jpg' */
-.t-thumb-fade {
+/* Subtil gradient de fond au hover */
+.t-card::before {
+  content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 56px;
-  background: linear-gradient(transparent, var(--bg-card));
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 0%, rgba(192,154,48,0.04) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
   pointer-events: none;
 }
-.t-emoji {
-  font-size: 68px;
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
+.t-card:hover::before { opacity: 1; }
+
+/* ── Guillemet décoratif ──────────────────────────────── */
+.t-mark {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 72px;
+  line-height: 0.8;
+  color: var(--gold);
+  opacity: 0.25;
+  display: block;
+  margin-bottom: -8px;
+  user-select: none;
 }
 
-/* ── Info panel ───────────────────────────────────────── */
-.t-infos {
-  background: var(--bg-card);
-  padding: 20px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  /* pas de justify-content flex-end — le contenu visible est en haut */
-  transform: translateY(0);
-  transition: transform 0.45s 0.05s cubic-bezier(.17,.67,.5,1.03);
-}
-.t-card:hover .t-infos {
-  transform: translateY(-215px);
-}
-
-/* Toujours visibles (en haut du panneau) */
+/* ── Étoiles ──────────────────────────────────────────── */
 .t-stars {
   color: var(--gold);
-  font-size: 14px;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  flex-shrink: 0;
-}
-.t-author {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex-shrink: 0;
-}
-.author-name {
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--white);
-}
-.author-role {
   font-size: 12px;
-  color: var(--gray-mid);
-  letter-spacing: 0.3px;
+  letter-spacing: 3px;
 }
 
-/* Révélés au hover (en dessous) */
-.t-sep {
-  height: 1px;
-  background: linear-gradient(to right, rgba(192,154,48,0.5), transparent);
-  margin: 18px 0 16px;
-  flex-shrink: 0;
-  opacity: 0;
-  transition: opacity 0.3s 0.15s ease;
-}
+/* ── Quote ────────────────────────────────────────────── */
 .t-quote {
   color: var(--gray-light);
   font-size: 14px;
-  line-height: 1.75;
+  line-height: 1.8;
   font-style: italic;
-  margin: 0 0 12px;
-  flex-shrink: 0;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s 0.2s ease, transform 0.3s 0.2s ease;
+  flex: 1;
 }
-.t-verified {
-  font-size: 12px;
-  color: var(--gray-mid);
-  letter-spacing: 0.3px;
-  flex-shrink: 0;
-  opacity: 0;
-  transition: opacity 0.3s 0.28s ease;
-}
-.check-icon { color: var(--gold); font-weight: 700; }
 
-.t-card:hover .t-sep     { opacity: 1; }
-.t-card:hover .t-quote   { opacity: 1; transform: translateY(0); }
-.t-card:hover .t-verified { opacity: 1; }
+/* ── Footer ───────────────────────────────────────────── */
+.t-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Avatar circulaire — initiales ou photo */
+.t-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(192,154,48,0.18), rgba(192,154,48,0.06));
+  border: 1px solid rgba(192,154,48,0.22);
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.t-author {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.author-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.author-role {
+  font-size: 11px;
+  color: var(--gray-mid);
+  letter-spacing: 0.2px;
+}
 
 /* ── Responsive ───────────────────────────────────────── */
-@media (max-width: 960px) {
-  .testimonials-section { padding: 72px 0; }
-  .testimonials-track { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .section-header { margin-bottom: 40px; }
+@media (max-width: 860px) {
+  .testimonials-track {
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+  }
+  .t-card:nth-child(1) { grid-row: auto; }
+  .t-card:nth-child(4) { grid-column: auto; }
 }
-@media (max-width: 600px) {
-  .testimonials-section { padding: 56px 0; }
-  .testimonials-track { grid-template-columns: 1fr; gap: 16px; }
-
-  /* Mobile : affichage statique complet, pas d'animation hover */
-  .t-card { height: auto; }
-  .t-thumb { height: 160px; }
-  .t-infos { transform: none !important; transition: none; }
-  .t-sep, .t-quote, .t-verified { opacity: 1 !important; transform: none !important; }
+@media (max-width: 540px) {
+  .testimonials-section { padding: 60px 0; }
+  .testimonials-track { grid-template-columns: 1fr; gap: 14px; }
+  .t-card:nth-child(1),
+  .t-card:nth-child(4) { grid-column: auto; grid-row: auto; }
 }
 </style>
