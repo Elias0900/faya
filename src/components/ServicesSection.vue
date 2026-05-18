@@ -127,7 +127,7 @@ const services = [
   box-shadow: var(--shadow-gold);
 }
 .service-card.featured {
-  background: linear-gradient(145deg, #1a1600, #0f0f0f);
+  background: linear-gradient(145deg, #171300, #0d0c0a);
   border-color: var(--gold);
   box-shadow: 0 0 50px rgba(201,162,39,0.18);
 }
