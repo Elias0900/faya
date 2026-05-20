@@ -54,14 +54,19 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 20px 0;
-  transition: all 0.4s ease;
+  padding: 18px 0;
+  transition: padding 0.45s cubic-bezier(0.4,0,0.2,1),
+              background 0.45s ease,
+              border-color 0.45s ease,
+              box-shadow 0.45s ease;
 }
 .navbar.scrolled {
-  background: rgba(8, 8, 8, 0.92);
-  backdrop-filter: blur(20px);
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
+  background: rgba(8, 7, 6, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 2px 32px rgba(0,0,0,0.5);
 }
 .nav-inner {
   display: flex;
@@ -83,15 +88,20 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 /* Image logo */
 .logo-img {
-  height: 75px;
+  height: 72px;
   width: auto;
   object-fit: contain;
   display: block;
-  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), filter 0.35s ease;
+  transition: height 0.45s cubic-bezier(0.4,0,0.2,1),
+              transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              filter 0.35s ease;
+}
+.navbar.scrolled .logo-img {
+  height: 38px;
 }
 .logo:hover .logo-img {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 10px rgba(192,154,48,0.7)) drop-shadow(0 0 24px rgba(192,154,48,0.35));
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 8px rgba(192,154,48,0.65)) drop-shadow(0 0 20px rgba(192,154,48,0.3));
 }
 
 /* Groupe texte à droite du logo image */
@@ -99,6 +109,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   display: flex;
   flex-direction: column;
   gap: 1px;
+  overflow: hidden;
 }
 
 /* Fallback texte — visible uniquement si logo absent */
@@ -106,7 +117,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   display: none;
 }
 
-/* Tagline toujours visible */
+/* Tagline — disparaît en douceur au scroll */
 .logo-tagline {
   font-size: 10px;
   font-weight: 700;
@@ -115,6 +126,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   color: #ffffff;
   opacity: 0.85;
   line-height: 1;
+  max-height: 20px;
+  transition: opacity 0.35s ease, max-height 0.4s ease, margin 0.4s ease;
+}
+.navbar.scrolled .logo-tagline {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
 }
 
 .gold { color: var(--gold); }
